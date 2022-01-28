@@ -12,6 +12,9 @@
 <div class="card">
   <div class="card-header">
     <h4><%= @post.title %></h4>
+    <% @post.categories.each do |category| %>
+      <span class="badge bg-primary"><%= category.name %></span>
+    <% end %>
   </div>
   <div class="card-body">
     <p class="card-text"><%= simple_format(@post.body) %></p>

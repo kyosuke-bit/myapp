@@ -9,4 +9,12 @@ if Rails.env == 'development'
   (1..50).each do |i|
     Post.create(title: "タイトル#{i}", body: "本文#{i}")
   end
+
+  Category.create([
+    { name: 'product1' },
+    { name: 'product2' },
+    { name: 'product3' },
+    { name: 'product4' },
+    { name: 'product5' }
+  ])
 end

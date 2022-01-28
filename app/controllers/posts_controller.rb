@@ -35,14 +35,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.delete
+    @post.destroy
     redirect_to posts_path, flash: { notice: "#{@post.title}の質問が削除されました  " }
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, category_ids: [])
   end
 
   def set_target_post
