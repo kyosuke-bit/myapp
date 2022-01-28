@@ -18,3 +18,10 @@
     <p class="text-end fw-bold mr-10">作成者名</p>
   </div>
 </div>
+
+<div class="p-comment__list">
+  <div class="p-comment_listTitle">コメント</div>
+  <%= render @post.comments %>
+</div>
+
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
