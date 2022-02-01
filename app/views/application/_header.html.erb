@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">ブランドコミュニティサイト</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <%= header_link_item('ホーム', root_path) %>
+        <%= header_link_item('掲示板一覧', posts_path) %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ユーザー
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if @current_user %>
+              <%= link_to 'マイページ', mypage_path, class: 'dropdown-item' %>
+              <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
+            <% else %>
+              <%= link_to '登録', new_user_path, class: 'dropdown-item' %>
+              <%= link_to 'ログイン', login_path, class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索...">
+        <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
+      </form>
+    </div>
+  </div>
+</nav>
