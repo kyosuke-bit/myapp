@@ -16,9 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def me
-  end
-
   private
 
   def user_params

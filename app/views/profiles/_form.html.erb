@@ -1,0 +1,36 @@
+<%= form_for profile do |f| %>
+  <%= f.text_field :user_id %>
+  <div class="mb-3">
+    <%= f.label :first_name, '姓' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :last_name, '名' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :first_name_kana, 'せい' %>
+    <%= f.text_field :first_name_kana, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :last_name_kana, 'めい' %>
+    <%= f.text_field :last_name_kana, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :nickname, 'ニックネーム' %>
+    <%= f.text_field :nickname, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :birthday, '誕生日' %>
+    <%= f.date_field :birthday, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :phone_number, '電話番号' %>
+    <%= f.text_field :phone_number, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :prefectures, '都道府県' %>
+    <%= f.text_field :prefectures, class: 'form-control' %>
+  </div>
+  <%= f.submit '保存', class: 'btn btn-primary' %>
+<% end %>
