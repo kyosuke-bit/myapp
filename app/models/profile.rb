@@ -25,4 +25,13 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
+
+  VALID_PHONE_NUMBER_REGEX = /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
+
+  validates :first_name, length: { maximum: 10 }
+  validates :last_name, length: { maximum: 10 }
+  validates :first_name_kana, length: { maximum: 15 }
+  validates :last_name_kana, length: { maximum: 15 }
+  validates :nickname, length: { maximum: 15 }
+  validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }
 end

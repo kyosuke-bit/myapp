@@ -8,8 +8,14 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.update(profile_params)
-    redirect_to profile_path, flash: { notice: "プロフィールが更新されました  " }
+    if @profile.update(profile_params)
+      redirect_to profile_path, flash: { notice: "プロフィールが更新されました  " }
+    else
+      redirect_to edit_profile_path, flash: {
+        profile: @profile,
+        error_messages: @profile.errors.full_messages
+      }
+    end
   end
 
   private
