@@ -3,14 +3,14 @@
 # Table name: profiles
 #
 #  id              :bigint           not null, primary key
-#  birthday        :date             not null
-#  first_name      :string(255)      not null
-#  first_name_kana :string(255)      not null
-#  last_name       :string(255)      not null
-#  last_name_kana  :string(255)      not null
-#  nickname        :string(255)      not null
-#  phone_number    :string(255)      not null
-#  prefectures     :string(255)      not null
+#  birthday        :date
+#  first_name      :string(255)
+#  first_name_kana :string(255)
+#  last_name       :string(255)
+#  last_name_kana  :string(255)
+#  nickname        :string(255)
+#  phone_number    :string(255)
+#  prefectures     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  user_id         :bigint           not null
@@ -33,5 +33,5 @@ class Profile < ApplicationRecord
   validates :first_name_kana, length: { maximum: 15 }
   validates :last_name_kana, length: { maximum: 15 }
   validates :nickname, length: { maximum: 15 }
-  validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }
+  validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }, allow_blank: true
 end
