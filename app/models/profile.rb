@@ -10,9 +10,9 @@
 #  last_name_kana  :string(255)
 #  nickname        :string(255)
 #  phone_number    :string(255)
-#  prefectures     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  prefecture_id   :integer
 #  user_id         :bigint           not null
 #
 # Indexes
@@ -26,6 +26,9 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture, optional: true
+
   VALID_PHONE_NUMBER_REGEX = /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
 
   validates :first_name, length: { maximum: 10 }
@@ -34,4 +37,5 @@ class Profile < ApplicationRecord
   validates :last_name_kana, length: { maximum: 15 }
   validates :nickname, length: { maximum: 15 }
   validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }, allow_blank: true
+  # validates :prefecture, optional: true
 end

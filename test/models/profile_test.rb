@@ -10,9 +10,9 @@
 #  last_name_kana  :string(255)
 #  nickname        :string(255)
 #  phone_number    :string(255)
-#  prefectures     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  prefecture_id   :integer
 #  user_id         :bigint           not null
 #
 # Indexes

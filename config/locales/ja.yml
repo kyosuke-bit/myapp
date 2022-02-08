@@ -13,7 +13,7 @@ ja:
         nickname: ニックネーム
         birthday: 誕生日
         phone_number: 電話番号
-        prefectures: 都道府県
+        prefecture: 都道府県
       post:
         title: タイトル
         body: 本文
