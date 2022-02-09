@@ -21,8 +21,20 @@
     <%= f.text_field :nickname, class: 'form-control' %>
   </div>
   <div class="mb-3">
-    <%= f.label :birthday, '誕生日' %>
-    <%= f.date_field :birthday, class: 'form-control' %>
+    <%= f.label :birthday, '誕生日' %><br>
+    <%= raw sprintf(
+            f.date_select(
+              :birthday, {
+              use_month_numbers: true,
+              start_year: 1930,
+              end_year: (Time.now.year - 10),
+              default: Date.new(1990, 1, 1),
+              prompt:"--",
+              date_separator: '%s'},
+              class: 'form-control',
+              style: 'display: inline-block;width: auto;'
+              ),
+              '年 ', '月 ') + '日' %>
   </div>
   <div class="mb-3">
     <%= f.label :phone_number, '電話番号' %>
