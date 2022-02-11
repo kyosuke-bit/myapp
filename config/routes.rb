@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :users, only: %i[new create]
   resource :profile
-  resources :posts
+  resources :posts do
+    resources :favorites, only: %i[create destroy]
+  end
   resources :comments, only: %i[create destroy]
 end

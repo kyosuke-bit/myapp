@@ -19,6 +19,9 @@
   <div class="card-body">
     <p class="card-text"><%= simple_format(@post.body) %></p>
     <p class="text-end fw-bold mr-10">作成者名</p>
+    <div id="favorites_buttons<%= @post.id %>">
+      <%= render partial: 'favorites/favorite', locals: { post: @post, favorite: @favorite } %>
+    </div>
   </div>
 </div>
 

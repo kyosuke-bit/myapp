@@ -1,0 +1,13 @@
+<% unless @post.favorite_user(@current_user).blank? %>
+  <%= link_to post_favorite_path(post_id: @post.id, id: @post.favorites[0].id), method: :delete, remote: true do %>
+    <div class="vertical_favorite">
+      <p class="text-center"><%= image_tag "icon_red_heart.png", size: '20x20' %> いいねを取り消す</p>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to post_favorites_path(post_id: @post.id), method: :post, remote: true do %>
+    <div class="vertical_favorite">
+      <p class="text-center"><%= image_tag "icon_heart.png", size: '20x20' %> いいね！</p>
+    </div>
+  <% end %>
+<% end %>
