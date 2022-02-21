@@ -1,15 +1,11 @@
 <div class="d-inline-block">
   <% if comment.good_user(@current_user.id).present? %>
     <%= link_to post_comment_good_path(post_id: @post.id, comment_id: comment.id, id: @current_user), method: :delete, remote: true do %>
-      <div class="vertical_good">
-        <%= image_tag "icon_red_heart.png", size: '20x20' %>
-      </div>
+      <i class="fas fa-heart fa-lg" style="color:red;"></i>
     <% end %>
   <% else %>
     <%= link_to post_comment_goods_path(@post, comment), method: :post, remote: true do %>
-      <div class="vertical_good">
-        <%= image_tag "icon_heart.png", size: '20x20' %>
-      </div>
+      <i class="far fa-heart fa-lg"></i>
     <% end %>
   <% end %>
 </div>
