@@ -18,6 +18,11 @@
 #
 class Comment < ApplicationRecord
   belongs_to :post
+  has_many :goods, dependent: :destroy
 
   validates :comment, presence: true, length: { maximum: 1000 }
+
+  def good_user(user_id)
+    goods.find_by(user_id: user_id)
+  end
 end

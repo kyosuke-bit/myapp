@@ -2,7 +2,7 @@
 
 <div class="p-comment__formBox">
   <p class="p-comment__formTitle">コメント記入</p>
-  <%= form_for comment do |f| %>
+  <%= form_with model:[@post, comment], method: :post do |f| %>
     <%= f.hidden_field :post_id %>
     <div class="mb-3">
       <%= f.label :comment, 'コメント' %>

@@ -1,0 +1,18 @@
+<div class="d-inline-block">
+  <% unless comment.good_user(@current_user.id).blank? %>
+    <%= link_to post_comment_good_path(post_id: @post.id, comment_id: comment.id, id: @current_user), method: :delete, remote: true do %>
+      <div class="vertical_good">
+        <%= image_tag "icon_red_heart.png", size: '20x20' %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to post_comment_goods_path(@post, comment), method: :post, remote: true do %>
+      <div class="vertical_good">
+        <%= image_tag "icon_heart.png", size: '20x20' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="d-inline-block">
+  <span><%= comment.goods.count %></span>
+</div>

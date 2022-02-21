@@ -1,7 +1,10 @@
 <div class="p-comment__item">
   <p><%= simple_format(comment.comment) %></p>
   <div class="p-comment__bottomLine">
+    <div id="goods_buttons<%= comment.id %>">
+      <%= render partial: 'goods/good', locals: { post: @post, comment: comment } %>
+    </div>
     <span><%= comment.created_at.to_s(:datetime_jp) %></span>
-    <span><%= link_to '削除', comment, method: :delete, data: { confirm: '削除してよろしいですか？' } %></span>
+    <span><%= link_to '削除', post_comment_path(@post, comment), method: :delete, data: { confirm: '削除してよろしいですか？' } %></span>
   </div>
 </div>

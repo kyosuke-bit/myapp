@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resource :profile
   resources :posts do
     resources :favorites, only: %i[create destroy]
+    resources :comments, only: %i[create destroy] do
+      resources :goods, only: %i[create destroy]
+    end
   end
-  resources :comments, only: %i[create destroy]
 end
