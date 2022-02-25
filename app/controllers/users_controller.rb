@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def mypage
+    @posts = Post.where(user_id: @current_user)
   end
 
   private

@@ -1,7 +1,37 @@
-<p>マイページ</p>
-<section class="stats">
-  <%= render 'shared/stats' %>
-</section>
+<h1>マイページ</h1>
+<div class="my-1">
+  <section class="stats">
+    <%= render 'shared/stats' %>
+  </section>
+  <div>
+    <%= render 'follow_form' %>
+  </div>
+</div>
 <div>
-  <%= render 'follow_form' %>
+  <table class="table table-hover posts__table">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>作成者</th>
+        <th>作成日時</th>
+        <th>更新日時</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td><%= post.body %></td>
+          <td><%= post.created_at.to_s(:datetime_jp) %></td>
+          <td><%= post.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= link_to '詳細', post, class: 'btn btn-outline-dark' %></td>
+          <td><%= link_to '削除', post, class: 'btn btn-outline-dark', method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
