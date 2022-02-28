@@ -42,6 +42,6 @@ class ProfilesController < ApplicationController
   end
 
   def set_target_profile
-    @profile = current_user.profile
+    @profile = Profile.find_by(user_id: current_user.id)
   end
 end
