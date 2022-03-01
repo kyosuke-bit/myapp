@@ -1,6 +1,14 @@
 <%= form_for profile, url: profile_path do |f| %>
   <%= f.hidden_field :user_id %>
   <div class="mb-3">
+    <%= f.label :image, 'アイコン' %>
+    <br>
+    <% if profile.image.present? %>
+     <%= image_tag profile.image.url, class: 'profile-icon' %>
+    <% end %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="mb-3">
     <%= f.label :first_name, '姓' %>
     <%= f.text_field :first_name, class: 'form-control' %>
   </div>

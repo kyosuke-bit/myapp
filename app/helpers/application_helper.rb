@@ -7,4 +7,8 @@ module ApplicationHelper
       link_to name, path, class: class_name
     end
   end
+
+  def active_if(path)
+    path == controller_path ? 'active' : ''
+  end
 end

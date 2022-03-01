@@ -9,3 +9,12 @@
     margin: 0 8px;
   }
 }
+
+.profile-icon {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  180px;       /* ※縦横を同値に */
+  height: 180px;       /* ※縦横を同値に */
+  background-position: center center;
+  object-fit: cover;
+  border: solid 5px #d3d3d3;
+}

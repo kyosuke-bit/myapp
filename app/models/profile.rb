@@ -6,6 +6,7 @@
 #  birthday        :date
 #  first_name      :string(255)
 #  first_name_kana :string(255)
+#  image           :string(255)
 #  last_name       :string(255)
 #  last_name_kana  :string(255)
 #  nickname        :string(255)
@@ -29,13 +30,13 @@ class Profile < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, optional: true
 
-  VALID_PHONE_NUMBER_REGEX = /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
+  mount_uploader :image, ImageUploader
 
+  VALID_PHONE_NUMBER_REGEX = /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
   validates :first_name, length: { maximum: 10 }
   validates :last_name, length: { maximum: 10 }
   validates :first_name_kana, length: { maximum: 15 }
   validates :last_name_kana, length: { maximum: 15 }
   validates :nickname, length: { maximum: 15 }
   validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }, allow_blank: true
-  # validates :prefecture, optional: true
 end
