@@ -34,7 +34,12 @@
       <tr>
         <td><%= post.id %></td>
         <td><%= post.title %></td>
-        <td><%= post.user.name %></td>
+
+        <td>
+          <%= link_to userpage_path(post.user.name) do %>
+            <p><%= post.user.name %></p>
+          <% end %>
+        </td>
         <td><%= post.created_at.to_s(:datetime_jp) %></td>
         <td><%= post.updated_at.to_s(:datetime_jp) %></td>
         <td><%= link_to '詳細', post, class: 'btn btn-outline-dark' %></td>

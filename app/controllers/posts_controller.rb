@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   def index
     @posts = params[:category_id].present? ? Category.find(params[:category_id]).posts : Post.all
     @posts = @posts.page(params[:page])
+
+    # @profile = Profile.where(user_id: @posts)
   end
 
   def new

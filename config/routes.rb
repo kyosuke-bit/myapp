@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
-  get '/:name', to: 'users#show'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
@@ -20,4 +19,5 @@ Rails.application.routes.draw do
       resources :goods, only: %i[create destroy]
     end
   end
+  get ':name', to: 'users#show', as: 'userpage'
 end
