@@ -9,22 +9,25 @@
         <%= header_link_item('ホーム', root_path) %>
         <%= header_link_item('掲示板一覧', posts_path) %>
       </ul>
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= @current_user.name %>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <% if @current_user %>
+
+      <% if @current_user %>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= @current_user.name %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to 'マイページ', mypage_path, class: 'dropdown-item' %>
               <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
-            <% else %>
-              <%= link_to '登録', new_user_path, class: 'dropdown-item' %>
-              <%= link_to 'ログイン', root_path, class: 'dropdown-item' %>
-            <% end %>
-          </div>
-        </li>
-      </ul>
+            </div>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <%= link_to 'ログイン', root_path, class: "btn btn-link" %>
+          <%= link_to '登録', new_user_path, class: "btn btn-primary" %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
