@@ -8,11 +8,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <%= header_link_item('ホーム', root_path) %>
         <%= header_link_item('掲示板一覧', posts_path) %>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ユーザー
+            <%= @current_user.name %>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <% if @current_user %>
               <%= link_to 'マイページ', mypage_path, class: 'dropdown-item' %>
               <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
@@ -23,10 +25,6 @@
           </div>
         </li>
       </ul>
-      <form class="d-flex">
-        <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索...">
-        <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
-      </form>
     </div>
   </div>
 </nav>
