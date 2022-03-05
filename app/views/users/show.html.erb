@@ -4,16 +4,19 @@
     <div class="col-3">
       <%= image_tag @profile.image.url, class: "profile-icon" %>
     </div>
+
     <div class="col-9">
-      <div class="">
-        <%= @user.name %>
+      <div class="my-3">
+        <strong><%= @user.name %></strong>
       </div>
-      <div class="">
+      <div class="my-3">
         <section class="stats">
           <%= render 'shared/stats' %>
         </section>
-        <div>
-          <%= render 'follow_form' %>
+        <div class="my-3">
+          <% unless @current_user == @user %>
+            <%= render 'follow_form' %>
+          <% end %>
         </div>
       </div>
     </div>
