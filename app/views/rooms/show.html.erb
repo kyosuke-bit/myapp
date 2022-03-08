@@ -1,0 +1,28 @@
+<h1>DM</h1>
+
+<%= link_to "戻る", :back, class: "btn btn-outline-dark" %>
+
+<div class="row my-5">
+  <h4>参加者</h4>
+  <% @entries.each do |e| %>
+    <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
+  <% end %>
+
+  <hr>
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <strong><%= m.content %></strong>
+      <small>by <strong><a href="/<%= m.user.name %>"><%= m.user.name%></a></strong></small>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>メッセージはまだありません。</p>
+  <% end %>
+
+  <%= form_for @message do |f| %>
+    <%= f.text_field :content, placeholder: "メッセージを入力してください", size: "70" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <br>
+    <% f.submit "投稿する" %>
+  <% end %>
+</div>

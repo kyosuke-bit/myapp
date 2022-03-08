@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
   # root 'home#index'
-  resources :users, only: %i[show new create] do
+  resources :users, only: %i[show new create edit update] do
     member do
       get :following, :followers
     end
@@ -19,5 +19,9 @@ Rails.application.routes.draw do
       resources :goods, only: %i[create destroy]
     end
   end
+  resources :messages, only: %i[create]
+  resources :rooms, only: %i[create show]
+
+  # ルーティングの規約により一番最後に記載
   get ':name', to: 'users#show', as: 'userpage'
 end

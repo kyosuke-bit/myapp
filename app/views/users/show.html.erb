@@ -1,11 +1,12 @@
 <div class="">
 
   <div class="row my-5">
+
     <div class="col-3">
       <%= image_tag @profile.image.url, class: "profile-icon" %>
     </div>
 
-    <div class="col-9">
+    <div class="col-6">
       <div class="my-3">
         <strong><%= @user.name %></strong>
       </div>
@@ -20,6 +21,27 @@
         </div>
       </div>
     </div>
+
+    <!-- DM機能 -->
+    <div class="col-3">
+      <% unless @user.id == @current_user.id %>
+        <% if @isRoom == true %>
+          <%= link_to "/rooms/#{@roomId}", class: "btn btn-outline-dark" do %>
+            <i class="fa-solid fa-paper-plane"></i>
+          <% end %>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.button type: :submit, class: "btn btn-outline-dark" do %>
+              <i class="fa-solid fa-paper-plane"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
 
   <div class="">
