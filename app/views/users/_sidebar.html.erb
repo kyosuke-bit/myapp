@@ -1,0 +1,16 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+   <hr>
+   <ul class="nav nav-pills flex-column mb-auto">
+     <li class="nav-item">
+      <%= link_to mypage_path, class: "nav-link #{active_if('users')}" do %>
+        <i class="fa-solid fa-house"></i><span class="ms-1 d-none d-sm-inline">マイページ</span>
+      <% end %>
+     </li>
+     <li>
+      <%= link_to profile_path, class: "nav-link #{active_if('profiles')}" do %>
+        <i class="fa-solid fa-user"></i><span class="ms-1 d-none d-sm-inline">プロフィール</span>
+      <% end %>
+     </li> 
+   </ul>
+   <hr>
+ </div>

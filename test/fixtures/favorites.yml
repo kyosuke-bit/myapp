@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: favorites
+#
+#  id         :bigint           not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  post_id    :integer
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_favorites_on_user_id_and_post_id  (user_id,post_id) UNIQUE
+#
+
+one:
+  user_id: 1
+  post_id: 1
+
+two:
+  user_id: 1
+  post_id: 1

@@ -1,9 +1,24 @@
 ja:
   activerecord:
     attributes:
+      user:
+        name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード（確認）
+      profile:
+        first_name: 姓
+        last_name: 名
+        first_name_kana: せい
+        last_name_kana: めい
+        nickname: ニックネーム
+        birthday: 誕生日
+        phone_number: 電話番号
+        prefecture: 都道府県
       post:
         title: タイトル
         body: 本文
+      comment:
+        comment: コメント
   views:
     pagination:
       first: 最初

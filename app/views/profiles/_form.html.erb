@@ -1,0 +1,56 @@
+<%= form_for profile, url: profile_path do |f| %>
+  <%= f.hidden_field :user_id %>
+  <div class="mb-3">
+    <%= f.label :image, 'アイコン' %>
+    <br>
+    <% if profile.image.present? %>
+     <%= image_tag profile.image.url, class: 'profile-icon' %>
+    <% end %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :first_name, '姓' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :last_name, '名' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :first_name_kana, 'せい' %>
+    <%= f.text_field :first_name_kana, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :last_name_kana, 'めい' %>
+    <%= f.text_field :last_name_kana, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :nickname, 'ニックネーム' %>
+    <%= f.text_field :nickname, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :birthday, '誕生日' %><br>
+    <%= raw sprintf(
+            f.date_select(
+              :birthday, {
+              use_month_numbers: true,
+              start_year: 1950,
+              end_year: (Time.now.year - 10),
+              default: Date.new(1990, 1, 1),
+              prompt:"--",
+              date_separator: '%s'},
+              class: 'form-control',
+              style: 'display: inline-block;width: auto;'
+              ),
+              '年 ', '月 ') + '日' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :phone_number, '電話番号' %>
+    <%= f.text_field :phone_number, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :prefecture_id, '都道府県' %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"} %>
+  </div>
+  <%= f.submit '保存', class: 'btn btn-primary' %>
+<% end %>

@@ -2,7 +2,10 @@ class PostsController < ApplicationController
   before_action :set_target_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = params[:category_id].present? ? Category.find(params[:category_id]).posts : Post.all
+    @posts = @posts.page(params[:page])
+
+    # @profile = Profile.where(user_id: @posts)
   end
 
   def new
@@ -23,6 +26,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new(post_id: @post.id)
+    # comment = Comment.find(params[:id])
   end
 
   def edit
@@ -34,14 +39,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.delete
+    @post.destroy
     redirect_to posts_path, flash: { notice: "#{@post.title}の質問が削除されました  " }
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :user_id, category_ids: [])
   end
 
   def set_target_post

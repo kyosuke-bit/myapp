@@ -1,0 +1,46 @@
+<h1>DM</h1>
+
+<%= link_to "戻る", :back, class: "btn btn-outline-dark" %>
+
+<div class="row my-5">
+  <h4>相手</h4>
+  <p><%= @another_user.user.name %></p>
+  <% if false %>
+  <% @entries.each do |e| %>
+    <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
+  <% end %>
+  <% end %>
+
+  <hr>
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <p><a class="fw-bold" href="/<%= m.user.name %>"><%= m.user.name %></a>
+        <span class="text-muted small"><%= m.created_at.strftime('%H:%M') %></span>
+      </p>
+      <%= simple_format(m.content) %>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>メッセージはまだありません。</p>
+  <% end %>
+
+  <%= form_with model: @message do |f| %>
+  <form class="form-inline">
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "メッセージを入力してください。", size: "100" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+    </div>
+    <div class="input-group">
+      <label class="input-group-btn">
+        <span class="btn btn-light">
+          ファイルを選択<input type="file" style="display:none">
+        </span>
+      </label>
+      <input type="text" class="form-control" readonly="">
+    </div>
+    <div class="form-group">
+      <%= f.submit "送信", class: "btn btn-primary" %>
+    </div>
+  </form>
+  <% end %>
+</div>

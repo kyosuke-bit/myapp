@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+
+    <%= render partial: 'users/sidebar' %>
+
+    <div class="col py-3">
+      <div class="d-flex align-items-center">
+        <h1>プロフィール</h1>
+        <% if @profile.nil? %>
+          <div class="ms-auto profiles__linkBox">
+            <%= link_to '新規作成', new_profile_path, class: 'btn btn-outline-dark' %>
+          </div>
+        <% else %>
+          <div class="ms-auto profiles__linkBox">
+            <%= link_to '編集', edit_profile_path, class: 'btn btn-outline-dark' %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-primary"><%= flash[:notice] %></div>
+      <% end %>
+
+      <% if @profile.nil? %>
+        <p>プロフィールはありません。</p>
+      <% else %>
+        <%= image_tag @profile.image.url, class: "profile-icon" %>
+        <table class="table">
+          <tr>
+            <th scope="col">姓</th>
+            <td><%= @profile.first_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">名</th>
+            <td><%= @profile.last_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">せい</th>
+            <td><%= @profile.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th scope="col">めい</th>
+            <td><%= @profile.last_name_kana %></td>
+          </tr>
+          <tr>
+            <th scope="col">ニックネーム</th>
+            <td><%= @profile.nickname %></td>
+          </tr>
+          <tr>
+            <th scope="col">誕生日</th>
+            <td><%= @profile.birthday %></td>
+          </tr>
+          <tr>
+            <th scope="col">電話番号</th>
+            <td><%= @profile.phone_number %></td>
+          </tr>
+          <tr>
+            <th scope="col">都道府県</th>
+            <!-- 要修正・nameメソッドのnilを許容させたい -->
+            <% if @profile.prefecture.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= @profile.prefecture.name %></td>
+            <% end %>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
