@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_100517) do
+ActiveRecord::Schema.define(version: 2022_03_28_025000) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2022_03_06_100517) do
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
-    t.string "image"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
