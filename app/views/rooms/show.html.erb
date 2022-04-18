@@ -12,17 +12,22 @@
   <% end %>
 
   <hr>
-  <% if @messages.present? %>
-    <% @messages.each do |m| %>
-      <p><a class="fw-bold" href="/<%= m.user.name %>"><%= m.user.name %></a>
-        <span class="text-muted small"><%= m.created_at.strftime('%H:%M') %></span>
-      </p>
-      <%= simple_format(m.content) %>
-      <hr>
+  <div class="">
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <p><a class="fw-bold" href="/<%= m.user.name %>"><%= m.user.name %></a>
+          <span class="text-muted small"><%= m.created_at.strftime('%H:%M') %></span>
+        </p>
+        <%= simple_format(m.content) %>
+        <% m.images.each do |image| %>
+         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+        <hr>
+      <% end %>
+    <% else %>
+      <p>メッセージはまだありません。</p>
     <% end %>
-  <% else %>
-    <p>メッセージはまだありません。</p>
-  <% end %>
+  </div>
 
   <%= form_with model: @message do |f| %>
   <form class="form-inline">
@@ -30,13 +35,8 @@
       <%= f.text_area :content, placeholder: "メッセージを入力してください。", size: "100" %>
       <%= f.hidden_field :room_id, value: @room.id %>
     </div>
-    <div class="input-group">
-      <label class="input-group-btn">
-        <span class="btn btn-light">
-          ファイルを選択<input type="file" style="display:none">
-        </span>
-      </label>
-      <input type="text" class="form-control" readonly="">
+    <div class="field">
+      <%= f.file_field :images, multiple: true %>
     </div>
     <div class="form-group">
       <%= f.submit "送信", class: "btn btn-primary" %>
