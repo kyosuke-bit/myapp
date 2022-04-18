@@ -263,6 +263,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.0)
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
