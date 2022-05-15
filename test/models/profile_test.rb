@@ -6,7 +6,6 @@
 #  birthday        :date
 #  first_name      :string(255)
 #  first_name_kana :string(255)
-#  image           :string(255)
 #  last_name       :string(255)
 #  last_name_kana  :string(255)
 #  nickname        :string(255)

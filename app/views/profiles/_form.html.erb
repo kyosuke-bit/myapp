@@ -1,12 +1,12 @@
 <%= form_for profile, url: profile_path do |f| %>
   <%= f.hidden_field :user_id %>
   <div class="mb-3">
-    <%= f.label :image, 'アイコン' %>
+    <%= f.label :icon, 'アイコン' %>
     <br>
-    <% if profile.image.present? %>
-     <%= image_tag profile.image.url, class: 'profile-icon' %>
+    <% if profile.icon.present? %>
+     <%= image_tag profile.icon, class: 'profile-icon' %>
     <% end %>
-    <%= f.file_field :image %>
+    <%= f.file_field :icon %>
   </div>
   <div class="mb-3">
     <%= f.label :first_name, '姓' %>

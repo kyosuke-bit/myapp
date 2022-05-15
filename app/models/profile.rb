@@ -6,7 +6,6 @@
 #  birthday        :date
 #  first_name      :string(255)
 #  first_name_kana :string(255)
-#  image           :string(255)
 #  last_name       :string(255)
 #  last_name_kana  :string(255)
 #  nickname        :string(255)
@@ -25,12 +24,11 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Profile < ApplicationRecord
+  has_one_attached :icon
   belongs_to :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, optional: true
-
-  mount_uploader :image, ImageUploader
 
   VALID_PHONE_NUMBER_REGEX = /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
   validates :first_name, length: { maximum: 10 }
