@@ -31,6 +31,7 @@ gem 'kaminari'
 gem 'rails-i18n'
 gem 'active_hash'
 gem 'jquery-rails'
+gem 'carrierwave', '~> 2.0'
 gem "aws-sdk-s3", require: false
 
 group :development, :test do
