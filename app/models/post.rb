@@ -19,6 +19,7 @@
 #
 class Post < ApplicationRecord
   belongs_to :user
+  has_one :profile, through: :user
   has_many :comments, dependent: :delete_all
   has_many :post_category_relations, dependent: :delete_all
   has_many :categories, through: :post_category_relations

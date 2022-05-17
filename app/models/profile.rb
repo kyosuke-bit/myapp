@@ -25,7 +25,7 @@
 #
 class Profile < ApplicationRecord
   has_one_attached :icon
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, optional: true
