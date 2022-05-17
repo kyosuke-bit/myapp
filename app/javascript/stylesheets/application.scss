@@ -5,3 +5,11 @@
 @import 'comments';
 @import 'profiles';
 @import 'favorites';
+
+.header-profile-icon {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  40px;       /* ※縦横を同値に */
+  height: 40px;       /* ※縦横を同値に */
+  background-position: center center;
+  object-fit: cover;
+}
