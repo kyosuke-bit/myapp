@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  before_action :set_target_profile, only: %i[show edit update]
 
   def show
   end
@@ -39,9 +38,5 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:user_id, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :birthday, :phone_number, :prefecture_id, :icon)
-  end
-
-  def set_target_profile
-    @profile = Profile.find_by(user_id: current_user.id)
   end
 end

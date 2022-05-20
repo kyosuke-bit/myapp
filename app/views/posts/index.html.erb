@@ -37,7 +37,14 @@
 
         <td>
           <%= link_to userpage_path(post.user.name) do %>
-            <p><%= image_tag post.user.profile.icon, class: 'header-profile-icon' %><%= post.user.name %></p>
+            <p>
+              <% if post.user.profile.icon.attached? %>
+                <%= image_tag post.user.profile.icon, class: 'header-profile-icon' %>
+              <% else %>
+                <%= image_tag "/assets/images/default.jpg", class: 'header-profile-icon' %>
+              <% end %>
+              <%= post.user.name %>
+            </p>
           <% end %>
         </td>
         <td><%= post.created_at.to_s(:datetime_jp) %></td>

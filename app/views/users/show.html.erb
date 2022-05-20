@@ -3,7 +3,11 @@
   <div class="row my-5">
 
     <div class="col-3">
-      <%= image_tag @profile.icon, class: "profile-icon" %>
+      <% if @user.profile.icon.attached? %>
+        <%= image_tag @user.profile.icon, class: 'profile-icon' %>
+      <% else %>
+        <%= image_tag "/assets/images/default.jpg", class: 'profile-icon' %>
+      <% end %>
     </div>
 
     <div class="col-6">
