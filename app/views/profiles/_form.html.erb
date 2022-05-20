@@ -3,8 +3,10 @@
   <div class="mb-3">
     <%= f.label :icon, 'アイコン' %>
     <br>
-    <% if profile.icon.present? %>
-     <%= image_tag profile.icon, class: 'profile-icon' %>
+    <% if profile.icon.attached? %>
+      <%= image_tag profile.icon, class: 'profile-icon' %>
+    <% else %>
+      <%= image_tag "/assets/images/default.jpg", class: 'header-profile-icon' %>
     <% end %>
     <%= f.file_field :icon %>
   </div>
