@@ -15,7 +15,13 @@
   <div class="">
     <% if @messages.present? %>
       <% @messages.each do |m| %>
-        <p><a class="fw-bold" href="/<%= m.user.name %>"><%= m.user.name %></a>
+        <p><a class="fw-bold" href="/<%= m.user.name %>">
+          <% if m.user.profile.icon.attached? %>
+            <%= image_tag m.user.profile.icon, class: 'header-profile-icon' %>
+          <% else %>
+            <%= image_tag "/assets/images/default.jpg", class: 'header-profile-icon' %>
+          <% end %>
+          <%= m.user.name %></a>
           <span class="text-muted small"><%= m.created_at.strftime('%H:%M') %></span>
         </p>
         <%= simple_format(m.content) %>
