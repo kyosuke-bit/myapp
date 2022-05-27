@@ -5,10 +5,6 @@ class RoomsController < ApplicationController
     Entry.create(room_id: @room.id, user_id: @current_user.id)
     Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
     redirect_to "/rooms/#{@room.id}"
-
-    # @room = Room.new(room_params)
-    # @room.save
-    # redirect_to room_messages_path(@room)
   end
 
   def show
