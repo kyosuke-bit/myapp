@@ -24,4 +24,6 @@ class Message < ApplicationRecord
   belongs_to :room
 
   has_many_attached :images
+
+  validates :content, length: { maximum: 200 }
 end

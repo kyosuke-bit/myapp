@@ -11,7 +11,9 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if Entry.where(room_id: @room.id, user_id: @current_user.id).present?
       @messages = @room.messages.all
-      @message = Message.new
+      # @message = Message.new
+      # @message = @room.messages.new
+      @message = Message.new(room_id: @room.id)
       @entries = @room.entries
 
       @user = (@entries.where(user_id: @current_user.id))[0]
@@ -20,6 +22,7 @@ class RoomsController < ApplicationController
       # redirect_to(fallback_location: link_to userpage_path(@user.name))
       redirect_back(fallback_location: root_path)
     end
+
   end
 
   private
