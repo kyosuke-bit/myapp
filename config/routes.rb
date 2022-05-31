@@ -19,8 +19,12 @@ Rails.application.routes.draw do
       resources :goods, only: %i[create destroy]
     end
   end
-  resources :messages, only: %i[create]
-  resources :rooms, only: %i[create show]
+  # resources :messages, only: %i[create destroy]
+  # resources :rooms, only: %i[create show]
+
+  resources :rooms, only: %i[create show] do
+    resources :messages, only: %i[create destroy]
+  end
 
   # ルーティングの規約により一番最後に記載
   get ':name', to: 'users#show', as: 'userpage'
