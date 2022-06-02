@@ -1,0 +1,18 @@
+.post_datetime_area {
+  display: flex;
+  align-items: center;
+}
+.post_datetime_area::before,
+.post_datetime_area::after {
+  content: '';
+  height: 1px;
+  background-color: #dcdcdc;
+  flex-grow: 1;
+}
+
+.xmark {
+  visibility: hidden;
+}
+.message-area:hover .xmark {
+  visibility: visible;
+}
