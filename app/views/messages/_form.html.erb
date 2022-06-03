@@ -1,14 +1,18 @@
-<%= form_with model: [@room, message] do |f| %>
-  <form class="form-inline">
-    <%= f.hidden_field :room_id %>
-    <div class="form-group">
-      <%= f.text_area :content, placeholder: "メッセージを入力してください。", size: "100" %>
+<div class="message-form py-3">
+  <%= form_with model: [@room, message] do |f| %>
+    <div class="row">
+      <%= f.hidden_field :room_id %>
+      <div class="col-11">
+        <div class="">
+          <%= f.text_area :content, class: "form-control", placeholder: "メッセージを入力してください。", size: "100" %>
+        </div>
+        <div class="">
+          <%= f.file_field :images, class: "form-control", multiple: true %>
+        </div>
+      </div>
+      <div class="col-1">
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.file_field :images, multiple: true %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "送信", class: "btn btn-primary" %>
-    </div>
-  </form>
-<% end %>
+  <% end %>
+</div>
