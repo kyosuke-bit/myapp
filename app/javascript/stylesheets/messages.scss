@@ -1,0 +1,26 @@
+.message-profile-icon {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  60px;       /* ※縦横を同値に */
+  height: 60px;       /* ※縦横を同値に */
+  background-position: center center;
+  object-fit: cover;
+}
+
+.post_datetime_area {
+  display: flex;
+  align-items: center;
+}
+.post_datetime_area::before,
+.post_datetime_area::after {
+  content: '';
+  height: 1px;
+  background-color: #dcdcdc;
+  flex-grow: 1;
+}
+
+.xmark {
+  visibility: hidden;
+}
+.message-area:hover .xmark {
+  visibility: visible;
+}

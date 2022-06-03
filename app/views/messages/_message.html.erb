@@ -1,32 +1,45 @@
 <div class="row">
   <% if @messages.present? %>
-    <div class="row">
-      <p><a class="fw-bold" href="/<%= message.user.name %>">
-        <% if message.user.profile.icon.attached? %>
-          <%= image_tag message.user.profile.icon, class: 'header-profile-icon' %>
-        <% else %>
-          <%= image_tag "/assets/images/default.jpg", class: 'header-profile-icon' %>
-        <% end %>
-        <%= message.user.name %></a>
-        <span class="text-muted small"><%= message.created_at.strftime('%H:%M') %></span>
-      </p>
-      <div class="row">
-        <div class="col-11">
-          <%= simple_format(message.content) %>
-          <% message.images.each do |image| %>
-           <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-          <% end %>
-        </div>
-        <div class="col-1">
-          <% if @current_user.id == message.user_id %>
-            <%= link_to [@room, message], method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-              <i class="fa-solid fa-xmark"></i>
-            <% end %>
-          <% end %>
+    <% if @first_post_time.include?(message.updated_at) == true %>
+      <div class="post_datetime_area">
+        <div class="datetime px-2">
+          <%= message.post_datetime %>
         </div>
       </div>
+    <% end %>
+
+    <div class="message-area row p-2">
+      <div class="col-1">
+        <a href="/<%= message.user.name %>">
+          <% if message.user.profile.icon.attached? %>
+            <%= image_tag message.user.profile.icon, class: 'message-profile-icon float-end' %>
+          <% else %>
+            <%= image_tag "/assets/images/default.jpg", class: 'header-profile-icon float-end' %>
+          <% end %>
+        </a>
+      </div>
+      <div class="col-10">
+        <p>
+          <a class="fw-bold" href="/<%= message.user.name %>">
+          <%= message.user.name %>
+          </a>
+          <span class="text-muted small"><%= message.created_at.strftime('%H:%M') %></span>
+        </p>
+        <%= simple_format(message.content) %>
+        <% message.images.each do |image| %>
+          <%= link_to image, "data-lightbox": image do %>
+            <%= image_tag image.variant(resize_to_limit: [100, 100]), class:"img"%>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-1 xmark">
+        <% if @current_user.id == message.user_id %>
+          <%= link_to [@room, message], method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <i class="fa-solid fa-xmark"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <hr>
   <% else %>
     <p>メッセージはまだありません。</p>
   <% end %>

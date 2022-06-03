@@ -6,9 +6,9 @@
   <h4>相手</h4>
   <p><%= @another_user.user.name %></p>
   <% if false %>
-  <% @entries.each do |e| %>
-    <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
-  <% end %>
+    <% @entries.each do |e| %>
+      <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
+    <% end %>
   <% end %>
 
   <hr>
