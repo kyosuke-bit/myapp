@@ -1,20 +1,22 @@
-<h1>DM</h1>
+<div class="room">
+  <h1>DM</h1>
 
-<%= link_to "戻る", :back, class: "btn btn-outline-dark" %>
+  <%= link_to "戻る", :back, class: "btn btn-outline-dark" %>
 
-<div class="row my-5">
-  <h4>相手</h4>
-  <p><%= @another_user.user.name %></p>
-  <% if false %>
-    <% @entries.each do |e| %>
-      <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
-    <% end %>
-  <% end %>
-
-  <hr>
-  <%= render @room.messages %>
-
-  <%= render 'shared/error_messages' %>
-
-  <%= render partial: 'messages/form', locals: { message: @message } %>
+  <div class="message-room row my-5">
+    <div class="room-name">
+      <h4>相手</h4>
+      <p><%= @another_user.user.name %></p>
+      <% if false %>
+        <% @entries.each do |e| %>
+          <h5><strong><a href="/<%= e.user.name %>"><%= e.user.name%></a></strong></h5>
+        <% end %>
+      <% end %>
+    </div>
+    <hr>
+    <%= render @room.messages %>
+  </div>
 </div>
+
+<%= render 'shared/error_messages' %>
+<%= render partial: 'messages/form', locals: { message: @message } %>

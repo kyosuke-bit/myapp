@@ -28,7 +28,7 @@
         <%= simple_format(message.content) %>
         <% message.images.each do |image| %>
           <%= link_to image, "data-lightbox": image do %>
-            <%= image_tag image.variant(resize_to_limit: [100, 100]), class:"img"%>
+            <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
           <% end %>
         <% end %>
       </div>
