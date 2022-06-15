@@ -38,7 +38,7 @@ before_action :set_profile, only: %i[show edit update]
   private
 
   def profile_params
-    params.require(:profile).permit(:user_id, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :birthday, :phone_number, :prefecture_id, :icon)
+    params.require(:profile).permit(:user_id, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :birthday, :phone_number, :prefecture_id, :icon, favorite_product_ids: [])
   end
 
   def set_profile

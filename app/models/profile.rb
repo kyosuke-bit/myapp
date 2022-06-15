@@ -26,6 +26,8 @@
 class Profile < ApplicationRecord
   has_one_attached :icon
   belongs_to :user, dependent: :destroy
+  has_many :profile_favorite_product_relations, dependent: :delete_all
+  has_many :favorite_products, through: :profile_favorite_product_relations
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, optional: true
