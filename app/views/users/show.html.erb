@@ -24,6 +24,11 @@
           <% end %>
         </div>
       </div>
+      <div class="my-3">
+        <% @user.profile.favorite_products.each do |p| %>
+          <span class="badge bg-primary"><%= p.product_name %></span>
+        <% end %>
+      </div>
     </div>
 
     <!-- DM機能 -->

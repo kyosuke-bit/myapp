@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_13_033234) do
+ActiveRecord::Schema.define(version: 2022_06_13_141945) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 2022_05_13_033234) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "favorite_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "product_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -98,6 +104,15 @@ ActiveRecord::Schema.define(version: 2022_05_13_033234) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profile_favorite_product_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "favorite_product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["favorite_product_id"], name: "index_profile_favorite_product_relations_on_favorite_product_id"
+    t.index ["profile_id"], name: "index_profile_favorite_product_relations_on_profile_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -148,5 +163,7 @@ ActiveRecord::Schema.define(version: 2022_05_13_033234) do
   add_foreign_key "post_category_relations", "categories"
   add_foreign_key "post_category_relations", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "profile_favorite_product_relations", "favorite_products"
+  add_foreign_key "profile_favorite_product_relations", "profiles"
   add_foreign_key "profiles", "users"
 end
