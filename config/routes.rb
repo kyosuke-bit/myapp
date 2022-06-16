@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
-  # root 'home#index'
   resources :users, only: %i[show new create edit update] do
     member do
       get :following, :followers
@@ -19,8 +18,6 @@ Rails.application.routes.draw do
       resources :goods, only: %i[create destroy]
     end
   end
-  # resources :messages, only: %i[create destroy]
-  # resources :rooms, only: %i[create show]
 
   resources :rooms, only: %i[create show] do
     resources :messages, only: %i[create destroy]
