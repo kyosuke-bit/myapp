@@ -24,10 +24,10 @@
       <% if @profile.nil? %>
         <p>プロフィールはありません。</p>
       <% else %>
-        <% if @profile.icon.attached? %>
+        <% if @profile.icon.present? %>
           <%= image_tag @profile.icon, class: 'profile-icon' %>
         <% else %>
-          <%= image_tag "/assets/images/default.jpg", class: 'profile-icon' %>
+          <%= image_tag "/assets/default.jpg", class: 'profile-icon' %>
         <% end %>
         <table class="table">
           <tr>
