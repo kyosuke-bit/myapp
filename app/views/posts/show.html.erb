@@ -1,7 +1,9 @@
 <div class="d-flex align-items-center mt-4 mb-4">
   <div class="ms-auto posts__linkBox">
     <%= link_to '一覧', posts_path, class: 'btn btn-outline-dark' %>
-    <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline-dark' %>
+    <% if @current_user.id == @post.user_id %>
+      <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline-dark' %>
+    <% end %>
   </div>
 </div>
 
@@ -18,7 +20,16 @@
   </div>
   <div class="card-body">
     <p class="card-text"><%= simple_format(@post.body) %></p>
-    <p class="text-end fw-bold mr-10">作成者名</p>
+    <p class="text-end fw-bold mr-10">
+      <%= link_to userpage_path(@post.user.name) do %>
+        <% if @post.user.profile.present? %>
+          <%= image_tag @post.user.profile.icon, class: 'header-profile-icon' %>
+        <% else %>
+          <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
+        <% end %>
+        <%= @post.user.name %>
+      <% end %>
+    </p>
     <div id="favorites_buttons<%= @post.id %>">
       <%= render partial: 'favorites/favorite', locals: { post: @post, favorite: @favorite } %>
     </div>
