@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[following followers]
 
   def show
     @user = User.find_by(name: params[:name])
@@ -45,21 +46,28 @@ class UsersController < ApplicationController
 
   def following
     @title = "フォロー"
-    @user  = User.find(params[:id])
     @users = @user.following.page(params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "フォロワー"
-    @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
+  end
+
+  def favorites
+    favorites = Favorite.where(user_id: @current_user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

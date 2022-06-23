@@ -11,4 +11,8 @@ module ApplicationHelper
   def active_if(path)
     path == controller_path ? 'active' : ''
   end
+
+  def current_page?(arg)
+    arg.keys.all? {|key| params[key] == arg[key] }
+  end
 end

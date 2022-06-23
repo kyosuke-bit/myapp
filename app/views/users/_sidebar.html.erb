@@ -11,6 +11,11 @@
         <i class="fa-solid fa-user"></i><span class="ms-1 d-none d-sm-inline">プロフィール</span>
       <% end %>
      </li>
+     <li>
+      <%= link_to favorites_user_path(@current_user), class: "nav-link #{active_if('favorites')}" do %>
+        <i class="fa-solid fa-heart"></i><span class="ms-1 d-none d-sm-inline">いいねした記事</span>
+      <% end %>
+     </li>
    </ul>
    <hr>
  </div>
