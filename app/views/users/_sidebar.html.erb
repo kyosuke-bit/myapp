@@ -2,13 +2,18 @@
    <hr>
    <ul class="nav nav-pills flex-column mb-auto">
      <li class="nav-item">
-      <%= link_to mypage_path, class: "nav-link #{active_if('users')}" do %>
+      <%= active_link_to mypage_path, class:'nav-link', active: [['users'], ['mypage']] do %>
         <i class="fa-solid fa-house"></i><span class="ms-1 d-none d-sm-inline">マイページ</span>
       <% end %>
      </li>
      <li>
-      <%= link_to profile_path, class: "nav-link #{active_if('profiles')}" do %>
+      <%= active_link_to profile_path, class:'nav-link', active: [['profiles'], ['show']] do %>
         <i class="fa-solid fa-user"></i><span class="ms-1 d-none d-sm-inline">プロフィール</span>
+      <% end %>
+     </li>
+     <li>
+      <%= active_link_to favorites_user_path(@current_user), class:'nav-link', active: [['users'], ['favorites']] do %>
+        <i class="fa-solid fa-heart"></i><span class="ms-1 d-none d-sm-inline">いいねした記事</span>
       <% end %>
      </li>
    </ul>

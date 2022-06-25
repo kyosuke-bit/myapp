@@ -1,0 +1,12 @@
+<td><%= post.title %></td>
+<td>
+  <% if post.user.profile.present? %>
+    <%= image_tag post.user.profile.icon, class: 'header-profile-icon' %>
+  <% else %>
+    <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
+  <% end %>
+  <%= post.user.name %>
+</td>
+<td><%= post.updated_at.to_s(:datetime_jp) %></td>
+<td><%= link_to '詳細', post, class: 'btn btn-outline-dark' %></td>
+<tr>

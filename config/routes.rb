@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :users, only: %i[show new create edit update] do
     member do
-      get :following, :followers
+      get :following, :followers, :favorites
     end
   end
   resources :relationships, only: [:create, :destroy]
   resource :profile
   resources :posts do
-    resources :favorites, only: %i[create destroy]
+    resources :favorites, only: %i[create destroy] do
+    end
     resources :comments, only: %i[create destroy] do
       resources :goods, only: %i[create destroy]
     end
