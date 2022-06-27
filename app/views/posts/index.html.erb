@@ -17,36 +17,50 @@
 <% if flash[:notice] %>
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
-<table class="table table-hover posts__table">
-  <thead class="table-dark">
-    <tr>
-      <th>タイトル</th>
-      <th>作成者</th>
-      <th>更新日時</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td>
-          <%= link_to userpage_path(post.user.name) do %>
-            <p>
+
+<% @posts.each do |post| %>
+  <div class="card my-3">
+    <%= link_to post do %>
+      <div class="card-body">
+        <div class="card-author d-flex flex-row">
+          <p class="">
+            <%= link_to userpage_path(post.user.name) do %>
               <% if post.user.profile.present? %>
                 <%= image_tag post.user.profile.icon, class: 'header-profile-icon' %>
               <% else %>
                 <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
               <% end %>
-              <%= post.user.name %>
+            <% end %>
+          </p>
+          <div class="ms-2">
+            <p class="my-0">
+              <%= link_to userpage_path(post.user.name) do %>
+                <%= post.user.name %>
+              <% end %>
             </p>
+            <span class="card-date fw-light text-secondary small"><%= post.updated_at.to_s(:datetime_jp) %></span>
+          </div>
+        </div>
+        <h4 class="card-title fw-bolder ps-5">
+          <%= link_to post do %>
+            <%= post.title %>
           <% end %>
-        </td>
-        <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-        <td><%= link_to '詳細', post, class: 'btn btn-outline-dark' %></td>
-      </tr>
+        </h4>
+        <div class="card-category ps-5">
+          <% if post.categories.exists? %>
+            <i class="fa-solid fa-tag"></i>
+          <% end %>
+          <% post.categories.each do |category| %>
+            <span class="badge bg-primary"><%= category.name %></span>
+          <% end %>
+        </div>
+        <div class="card-content ps-5">
+          <span class=""><i class="fa-regular fa-comment-dots"></i> <%= post.comments.count %></span>
+          <span class="ps-1"><i class="fa-regular fa-heart"></i> <%= post.favorites.count %></span>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
 <%= paginate @posts %>
