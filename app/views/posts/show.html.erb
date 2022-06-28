@@ -12,26 +12,44 @@
 <% end %>
 
 <div class="card">
-  <div class="card-header">
-    <h4><%= @post.title %></h4>
-    <% @post.categories.each do |category| %>
-      <span class="badge bg-primary"><%= category.name %></span>
-    <% end %>
-  </div>
   <div class="card-body">
-    <p class="card-text"><%= simple_format(@post.body) %></p>
-    <p class="text-end fw-bold mr-10">
-      <%= link_to userpage_path(@post.user.name) do %>
-        <% if @post.user.profile.present? %>
-          <%= image_tag @post.user.profile.icon, class: 'header-profile-icon' %>
-        <% else %>
-          <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
+    <div class="card-author d-flex flex-row">
+      <p class="">
+        <%= link_to userpage_path(@post.user.name) do %>
+          <% if @post.user.profile.present? %>
+            <%= image_tag @post.user.profile.icon, class: 'header-profile-icon' %>
+          <% else %>
+            <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
+          <% end %>
         <% end %>
-        <%= @post.user.name %>
+      </p>
+      <div class="ms-2">
+        <p class="my-0">
+          <%= link_to userpage_path(@post.user.name) do %>
+            <%= @post.user.name %>
+          <% end %>
+        </p>
+        <span class="card-date fw-light text-secondary small"><%= @post.updated_at.to_s(:datetime_jp) %></span>
+      </div>
+    </div>
+    <h4 class="card-title fw-bolder ps-5">
+      <%= link_to @post do %>
+        <%= @post.title %>
       <% end %>
-    </p>
-    <div id="favorites_buttons<%= @post.id %>">
-      <%= render partial: 'favorites/favorite', locals: { post: @post, favorite: @favorite } %>
+    </h4>
+    <div class="card-category ps-5">
+      <% if @post.categories.exists? %>
+        <i class="fa-solid fa-tag"></i>
+      <% end %>
+      <% @post.categories.each do |category| %>
+        <span class="badge bg-secondary"><%= category.name %></span>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= simple_format(@post.body) %></p>
+      <div id="favorites_buttons<%= @post.id %>">
+        <%= render partial: 'favorites/favorite', locals: { post: @post, favorite: @favorite } %>
+      </div>
     </div>
   </div>
 </div>
