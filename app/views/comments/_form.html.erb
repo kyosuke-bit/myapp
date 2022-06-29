@@ -4,6 +4,7 @@
   <p class="p-comment__formTitle">コメント記入</p>
   <%= form_with model:[@post, comment], method: :post do |f| %>
     <%= f.hidden_field :post_id %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
     <div class="mb-3">
       <%= f.label :comment, 'コメント' %>
       <%= f.text_area :comment, class: 'form-control', rows: 4 %>

@@ -38,3 +38,10 @@
     margin: 0 12px;
   }
 }
+
+.xmark {
+  visibility: hidden;
+}
+.p-comment__item:hover .xmark {
+  visibility: visible;
+}
