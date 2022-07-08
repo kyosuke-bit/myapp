@@ -42,6 +42,6 @@ before_action :set_profile, only: %i[show edit update]
   end
 
   def set_profile
-    @profile = Profile.find_by(user_id: @current_user)
+    @profile = Profile.find_by(user_id: current_user)
   end
 end
