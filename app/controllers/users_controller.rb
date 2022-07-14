@@ -5,9 +5,9 @@ class UsersController < ApplicationController
     @user = User.find_by(name: params[:name])
     @posts = Post.where(user_id: @user.id)
 
-    @currentUserEntry = Entry.where(user_id: @current_user.id)
+    @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
-    unless @user.id == @current_user.id
+    unless @user.id == current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
           if cu.room_id = u.room_id then
@@ -23,25 +23,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    @user = User.new(flash[:user])
-  end
-
-  def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
-      redirect_to posts_path
-    else
-      redirect_to new_user_path, flash: {
-        user: user,
-        error_messages: user.errors.full_messages
-      }
-    end
-  end
-
   def mypage
-    @posts = Post.where(user_id: @current_user)
+    @posts = Post.where(user_id: current_user)
   end
 
   def following
@@ -57,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    favorites = Favorite.where(user_id: @current_user.id).pluck(:post_id)
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
 

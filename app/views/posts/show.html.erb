@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center mt-4 mb-4">
   <div class="ms-auto posts__linkBox">
     <%= link_to '一覧', posts_path, class: 'btn btn-outline-dark' %>
-    <% if @current_user.id == @post.user_id %>
+    <% if current_user.id == @post.user_id %>
       <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline-dark' %>
     <% end %>
   </div>
@@ -14,15 +14,7 @@
 <div class="card">
   <div class="card-body">
     <div class="card-author d-flex flex-row">
-      <p class="">
-        <%= link_to userpage_path(@post.user.name) do %>
-          <% if @post.user.profile.present? %>
-            <%= image_tag @post.user.profile.icon, class: 'header-profile-icon' %>
-          <% else %>
-            <%= image_tag "/assets/default.jpg", class: 'header-profile-icon' %>
-          <% end %>
-        <% end %>
-      </p>
+      <%= render partial: 'shared/header_icon', locals: {post: @post} %>
       <div class="ms-2">
         <p class="my-0">
           <%= link_to userpage_path(@post.user.name) do %>

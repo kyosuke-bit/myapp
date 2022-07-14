@@ -18,7 +18,7 @@
       <span class="card-date fw-light text-secondary small"><%= comment.updated_at.to_s(:datetime_jp) %></span>
     </div>
     <div class="xmark ms-auto">
-      <% if @current_user.id == comment.user_id %>
+      <% if current_user.id == comment.user_id %>
         <%= link_to [@post, comment], method: :delete, data: { confirm: "本当に削除しますか？" } do %>
           <i class="fa-solid fa-xmark"></i>
         <% end %>

@@ -1,4 +1,4 @@
-<% if @post.favorite_user(@current_user).present? %>
+<% if @post.favorite_user(current_user).present? %>
   <%= link_to post_favorite_path(post_id: @post.id, id: @post.favorites[0].id), method: :delete, remote: true do %>
     <div class="vertical_favorite text-center">
       <span><i class="fas fa-heart fa-lg" style="color:red;"></i></span><span> いいねを取り消す</span>

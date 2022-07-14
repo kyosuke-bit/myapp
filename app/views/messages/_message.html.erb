@@ -33,7 +33,7 @@
         <% end %>
       </div>
       <div class="col-1 xmark">
-        <% if @current_user.id == message.user_id %>
+        <% if current_user.id == message.user_id %>
           <%= link_to [@room, message], method: :delete, data: { confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-xmark"></i>
           <% end %>

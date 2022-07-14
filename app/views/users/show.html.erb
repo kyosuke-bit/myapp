@@ -3,7 +3,7 @@
   <div class="row my-5">
 
     <div class="col-3">
-      <% if @user.profile.present? %>
+      <% if @user.profile.icon.present? %>
         <%= image_tag @user.profile.icon, class: 'profile-icon' %>
       <% else %>
         <%= image_tag "/assets/default.jpg", class: 'profile-icon' %>
@@ -19,7 +19,7 @@
           <%= render 'shared/stats' %>
         </section>
         <div class="my-3">
-          <% unless @current_user == @user %>
+          <% unless current_user == @user %>
             <%= render 'follow_form' %>
           <% end %>
         </div>
@@ -35,7 +35,7 @@
 
     <!-- DM機能 -->
     <div class="col-3">
-      <% unless @user.id == @current_user.id %>
+      <% unless @user.id == current_user.id %>
         <% if @isRoom == true %>
           <%= link_to "/rooms/#{@roomId}", class: "btn btn-outline-dark" do %>
             <i class="fa-solid fa-paper-plane"></i>
